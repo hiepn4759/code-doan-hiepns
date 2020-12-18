@@ -1,0 +1,92 @@
+﻿@model WebNhaHangOnline.Models.NhaCungCap
+@{
+    ViewBag.Title = "Sửa thông tin nhà cung cấp";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+               @using (Html.BeginForm("EditNhaCungCap", "NhaCungCap", FormMethod.Post, new { id = "sualoaiNCC", autocomplete = "off" }))
+               {
+
+                <div class="form-horizontal">
+                    <div class="alert alert-info" style="display:none">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary()
+                        <span id="kiemtratrungNCC"></span>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TenNCC, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.TenNCC, new { @class = "form-control", oninput = "kiemgiatritrungncc(this.value,\"" + @Url.Action("kiemtra", "NhaCungCap") + "\",\"#loaiisokncc\")" })
+                            @Html.ValidationMessageFor(model => model.TenNCC)
+                            <span id="loaiisokncc"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DiaChi)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SDT_NCC, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.SDT_NCC, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SDT_NCC)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Website, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.Website, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Website)
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: none">
+                        @Html.LabelFor(model => model.Net_user, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" value="@User.Identity.Name" id="@User.Identity.Name" name="Net_user" />
+                            @Html.ValidationMessageFor(model => model.Net_user)
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: none">
+                        @Html.LabelFor(model => model.MaNCC, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.MaNCC, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MaNCC)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Thêm mới" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+               }
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

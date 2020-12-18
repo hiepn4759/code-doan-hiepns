@@ -1,0 +1,91 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using WebNhaHangOnline.Models;
+
+namespace BusinessLayer.Business.Category
+{
+    public class CategoryModel
+    {
+        private WebGiayHangHieuEntities db;
+        public CategoryModel()
+        {
+            db = new WebGiayHangHieuEntities();
+        }
+        public IQueryable<LoaiSP> GetCategory()
+        {
+            IQueryable<LoaiSP> lst = db.LoaiSPs;
+            return lst;
+        }
+
+        public LoaiSP FindById(string id)
+        {
+            return db.LoaiSPs.Find(id);
+        }
+
+        public void EditLoaiSP(LoaiSP loai)
+        {
+            LoaiSP lsp = db.LoaiSPs.Find(loai.MaLoai);
+            lsp.TenLoai = loai.TenLoai;
+            db.Entry(lsp).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void DeleteLoaiSP(string id)
+        {
+            LoaiSP loai = db.LoaiSPs.Find(id);
+            db.LoaiSPs.Remove(loai);
+            db.SaveChanges();
+        }
+
+        public string ThemLoaiSP(LoaiSP loai)
+        {
+            loai.MaLoai = TaoMa();
+            db.LoaiSPs.Add(loai);
+            db.SaveChanges();
+            return loai.MaLoai;
+        }
+
+        private string TaoMa()
+        {
+            string maID;
+            Random rand = new Random();
+            do
+            {
+                maID = "";
+                for (int i = 0; i < 5; i++)
+                {
+                    maID += rand.Next(9);
+                }
+            }
+            while (!KiemtraID(maID));
+            return maID;
+        }
+
+        private bool KiemtraID(string maID)
+        {
+            var temp = db.LoaiSPs.Find(maID);
+            if (temp == null)
+                return true;
+            return false;
+        }
+
+        public IQueryable<LoaiSP> SearchByName(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+                return db.LoaiSPs;
+            return db.LoaiSPs.Where(u => u.TenLoai.Contains(key));
+        }
+
+
+        public bool KiemTraTen(string p)
+        {
+            var temp = db.LoaiSPs.Where(m=>m.TenLoai.Equals(p)).ToList();
+            if (temp.Count == 0)
+                return true;
+            return false;
+        }
+    }
+}

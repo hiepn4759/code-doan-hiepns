@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Tìm Kiếm";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using WebNhaHangOnline.Models;
+@model List<BanView>
+
+<div class="container">
+    @if (Model.Count == 0)
+    {
+        <h3>Không Có Bàn Như Vậy!</h3>
+    }
+    else
+    {
+        <br />
+        <br />
+        <h3 style="color: white">Danh Sách Bàn Theo Ý Bạn</h3>
+        <br />
+        <br />
+        <div class="container  panel panel-primary row" style="">
+            @foreach (BanView pv in @Model)
+            {
+                <div class="phong col-sm-6">
+                    <img class="img-rounded img-phong" src="~/images/headers/banlaui.jpg" alt="Image" width="250" height="149" />
+                    <label>Loại Bàn: @pv.TenLoai</label><br />
+                    <label>Tên Bàn: @pv.TenPhong</label><br />
+                    <label>Số lượng người: @pv.DienTich</label><br />
+                    @*<span class="gia-thue">@pv.GiaThue.000 đ/bàn</span><br />*@
+                    <input type="button" class="btn-dat-phong btn btn-danger" onclick="location.href = '/DatBan/DatBan/@pv.MaBan'" value="ĐẶT Bàn" />
+                </div>
+            }
+        </div>
+    }
+</div>

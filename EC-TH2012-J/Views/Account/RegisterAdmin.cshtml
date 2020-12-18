@@ -1,0 +1,89 @@
+﻿@model WebNhaHangOnline.Models.RegisterViewModel
+<h2 class="bordered">Đăng ký</h2>
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Thêm mới quản trị hệ thống</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("RegisterAdmin", "Account", FormMethod.Post, new { @class = "register-form cf-style-1", role = "form" }))
+                {
+                    <div class="form-horizontal">
+                        <div class="alert alert-info" style="display:none">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                            <span id="kiemtratrungNCC"></span>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2 le-input" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", oninput = "kiemgiatritrungncc(this.value,\"" + @Url.Action("kiemtra", "NhaCungCap") + "\",\"#loaiisokncc\")" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                                <span id="loaiisokncc"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control le-input" })
+                                @Html.ValidationMessageFor(model => model.UserName)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HoTen, new { @class = "control-label col-md-2 le-input" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control le-input" })
+                                @Html.ValidationMessageFor(model => model.HoTen)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DienThoai, new { @class = "control-label col-md-2 le-input" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.DienThoai, new { @class = "form-control le-input" })
+                                @Html.ValidationMessageFor(model => model.DienThoai)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-2 le-input" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control le-input" })
+                                @Html.ValidationMessageFor(model => model.DiaChi)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2 le-input" })
+                            <div class="col-md-4">
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control le-input" })
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfirmPassword, new { @class = "control-label col-md-2 le-input" })
+                            <div class="col-md-4">
+                                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control le-input" })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Thêm mới" class="btn btn-default le-button huge" />
+                            </div>
+                        </div>
+                    </div>  
+                }
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div>
+

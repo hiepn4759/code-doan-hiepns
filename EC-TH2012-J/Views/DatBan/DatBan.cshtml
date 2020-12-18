@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Đặt Bàn";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using WebNhaHangOnline.Models;
+@model Ban
+
+<br />
+
+<h3 style="color: white">Đặt Bàn</h3>
+
+<br />
+<div class="container panel panel-primary">
+    <div class="datban_" style="">
+        <img src="~/images/headers/banlaui.jpg" alt="Image" style="border-radius: 30px;width: 33%;" />
+        <div class="phong" style="float: right; margin-right: 25%">
+            <label style="font-size: 24px">Loại Bàn: @ViewBag.TenLoai</label><br />
+            <label style="font-size: 24px">Tên Bàn: @Model.TenPhong</label><br />
+            <label style="font-size: 24px">Số lượng người: @Model.DienTich</label><br />
+        </div>
+    </div>
+    <br />
+    <label>Vui lòng lựa chọn thực đơn: </label>
+    <hr />
+    <div class="thucdon">
+        <div class="tab-holder">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#featured" data-toggle="tab">Nổi bật</a></li>
+                <li><a href="#new-arrivals" data-toggle="tab">Mới nhập</a></li>
+                <li><a href="#top-sales" data-toggle="tab">Giảm giá</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="featured">
+                    <div class="product-grid-holder">
+                        <div id="spnoibat">
+                            @Html.Action("SPNoiBat", "DatBan")
+                        </div>
+                    </div>
+                    <div class="loadmore-holder text-center">
+                        <div id="sphotlink">
+                            <a class="btn-loadmore" href='javascript:LoadMorePro(4,"SPNoiBat","#sphotlink","#spnoibat")'>
+                                <i class="fa fa-plus"></i>
+                                Tải thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="new-arrivals">
+                    <div class="product-grid-holder">
+                        <div id="spmoiload">
+                            @Html.Action("SPMoiNhap", "DatBan")
+                        </div>
+                    </div>
+                    <div class="loadmore-holder text-center">
+                        <div id="spmoilink">
+                            <a class="btn-loadmore" href='javascript:LoadMorePro(4,"SPMoiNhap","#spmoilink","#spmoiload")'>
+                                <i class="fa fa-plus"></i>
+                                Tải thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="top-sales">
+                    <div class="product-grid-holder">
+                        <div id="spkmload">
+                            @Html.Action("SPKhuyenMai", "DatBan")
+                        </div>
+                    </div>
+                    <div class="loadmore-holder text-center">
+                        <div id="spkmlink">
+                            <a class="btn-loadmore" href='javascript:LoadMorePro(4,"SPKhuyenMai","#spkmlink","#spkmload")'>
+                                <i class="fa fa-plus"></i>
+                                Tải thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <hr />
+
+    <form method="post">
+        <div class="form-group">
+            <label>Tổng số tiền:</label>
+            @Html.Action("CartTitle", "DatBan")
+            <label>Bạn đặt bàn hôm nào:</label>
+            <input class="form-control ngay-den" type="datetime-local" id="NgayDen" name="NgayDen" />
+            @*<label>Số lượng người: </label>
+            <input class="form-control so-ngay" type="number" min="1" max="30" value="1" id="SoNgay" name="SoNgay" />
+            <label>&nbsp;Ngày</label>*@
+            <script>
+                var homnay = new Date().toISOString().substring(0, 10);
+                document.getElementById('NgayDen').value = homnay;
+                document.getElementById('NgayDen').min = homnay;
+            </script>
+            <br /><br />
+            <label>Bạn Muốn Đặt Những Dịch Vụ Nào?</label>
+            <br />
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Đặt Bàn" />
+        </div>
+    </form>
+    <br />
+    <hr />
+    <div class="container">
+        @if (ViewBag.Success == -1)
+        {
+            <p class="canh-bao">Nhập sai thông tin! Số ngày phải >= 1!</p>
+            
+        }
+        else if (ViewBag.Success == 1)
+        {
+            <h2 class="canh-bao" style="color: red">Bàn đã có người đặt trong khoảng thời gian đó!. Vui lòng chọn thời gian khác</h2>
+            <p><a href="@Url.Action("DSBan", "DatBan")"><span style="color: #0000CC;" class="btn btn-danger">Quay Về Trang Chủ</span></a></p>
+        }
+    </div>
+</div>

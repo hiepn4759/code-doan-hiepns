@@ -1,0 +1,95 @@
+﻿@model WebNhaHangOnline.Models.KhoSP
+@{
+    ViewBag.Title = "Kho";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                @*<div class="form-inline" style="text-align: right; padding: 10px">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="inputIconKho" type="text" class="form-control" placeholder="Nhập sản phẩm" oninput="timkiemKhoSP()">
+                    </div>
+                    <div class="input-group">
+                        <a class="btn btn-danger" href='javascript:multibledel("@Url.Action("MultibleDel", "KhoSP")")'>
+                            <i class="glyphicon glyphicon-trash icon-white"></i>
+                            Xóa các sản phẩm đã chọn
+                        </a>
+                    </div>
+                </div>*@
+                <div class="Ajax-Table">
+                    @Html.Action("TimTongSPKho", "TongSPKho")
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Thêm @ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("ThemSLKhoSP", "KhoSP", FormMethod.Post, new { autocomplete = "off" }))
+                {
+
+                    <div class="form-horizontal">
+                        <div class="alert alert-info" style="display:none">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                            <span id="kiemtratrungKhoSP"></span>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaSP, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("MaSP", (SelectList)@ViewBag.ALlSP, String.Empty, new { @class = "form-control"@*, id = "maloaisearch", onchange = "timkiemajax()"*@ })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SL, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.SL, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SL)
+                            </div>
+                        </div>
+                        <div class="form-group" style="display: none">
+                            @Html.LabelFor(model => model.DateImport, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.DateImport, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DateImport)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Thêm mới" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

@@ -1,0 +1,13 @@
+﻿@model WebNhaHangOnline.Models.Giohang
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    @*<div class="basket-item-count">
+        <span class="count">@Model.Tinhtongsoluongtronggio_()</span>
+    </div>*@
+    <div class="total-price-basket" id="datban-basket">
+        <span class="lbl">Giá tiền:</span>
+        <span class="total-price">
+            @*<input class="form-control so-ngay" type="text" value="@string.Format("{0:0,0}", @Model.TinhtongtienCart_())" id="SoNgay" name="SoNgay" readonly disabled/>*@
+            <input class="form-control so-ngay" type="number" value="@Model.TinhtongtienCart_()" id="SoNgay" name="SoNgay" readonly/>
+        </span>
+    </div>
+</a>

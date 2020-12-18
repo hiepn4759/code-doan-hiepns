@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Lịch Sử";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+    ViewBag.DiaChi = 2;
+}
+
+@using WebNhaHangOnline.Models
+@model List<LichSuView>
+
+<br />
+<h3>Lịch Sử Đặt Bàn</h3>
+<div class="panel panel-default">
+    <div class="row">
+        <div class="wrap-lich-su col-sm-12">
+            @if (@Model.Count > 0)
+            {
+                foreach (LichSuView lsv in @Model)
+                {
+                    <hr />
+                    <div class="khung-lich-su" style="height: 110px;">
+                        <table class="bang-dang-ky-thanh-cong bang-dat-phong-thanh-cong col-sm-6">
+                            <colgroup>
+                                <col style="width: 40%" />
+                                <col style="width: 60%" />
+                            </colgroup>
+                            <tbody>
+                                <tr><th>Tên Bàn:</th><th><span style="color: #8A2BE2">@lsv.TenPhong</span></th></tr>
+                                <tr><th>Tên Bàn:</th><th><span style="color: #8A2BE2">@lsv.UserName</span></th></tr>
+                                @*<tr><th>Dịch Vụ:</th><th><span style="color: #009999">@lsv.DichVu</span></th></tr>*@
+                                <tr><th>Đặt Vào Ngày:</th><th><span style="color: #4682B4">@lsv.NgayDat</span></th></tr>
+                                <tr><th>Ngày đến:</th><th><span style="color: #669900">@lsv.NgayDen</span></th></tr>                                       
+                                <tr><th>Thành Tiền:</th><th><span style="color: #e6004c">@lsv.ThanhTien đ</span></th></tr>
+                            </tbody>
+                        </table>
+                        @if (lsv.CoTheHuy)
+                    {
+                            <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#myModal" onclick="myFunction('/DatBan/XoaDatBan/@lsv.MaDatPhong')">Hủy Đặt</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-danger" disabled>Quá Hạn Hủy</button>
+                        }
+                    </div>
+                    <br />
+                }
+            }
+            else
+            {
+                <div class="khung-lich-su">
+                    <label>Bạn Chưa Đặt Bàn Nào!</label>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@*<script src="/Scripts/jquery.min.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>*@
+<script>
+    var link;
+    function myFunction(s) {
+        debugger
+        link = s;
+    }
+    function btnOKClick() {
+        debugger
+        window.location = link;
+    }
+</script>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông Báo</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn hủy đặt không?</p>
+            </div>
+            <div class="modal-footer">
+                <input type="button" style="width:70px" class="btn btn-success" data-dismiss="modal" value="Có" id="btnOK" onclick="btnOKClick()" />
+                <input type="button" style="width:70px" class="btn btn-default" data-dismiss="modal" value="Không" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["HuyDat"] != null)
+{
+    TempData["HuyDat"] = null;
+    <div class="modal fade" id="modalHuyThanhCong" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thông Báo</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Hủy đặt Bàn thành công!</p>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <input type="button" style="width:70px" class="btn btn-success" data-dismiss="modal" value="OK" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#modalHuyThanhCong").modal({ show: true });
+    </script>
+}

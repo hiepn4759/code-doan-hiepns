@@ -1,0 +1,563 @@
+﻿@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+@model WebNhaHangOnline.Models.SanPham
+
+
+<script src='https://cdn.rawgit.com/jackmoore/zoom/master/jquery.zoom.min.js'></script>
+
+<style>
+    #single-product .single-product-gallery-item img {
+        -webkit-transition: all .4s ease-in-out;
+	    -moz-transition: all .4s ease-in-out;
+	    -o-transition: all .4s ease-in-out;
+	    -ms-transition: all .4s ease-in-out;
+    }
+
+    .transition {
+        -webkit-transform: scale(1.6); 
+        -moz-transform: scale(1.6);
+        -o-transform: scale(1.6);
+        transform: scale(1.6);
+    }
+    #easy_zoom{
+	    width:600px;
+	    height:400px;	
+	    border:5px solid #eee;
+	    background:#fff;
+	    color:#333;
+	    position:absolute;
+	    top:40%;
+	    left:43%;
+	    overflow:hidden;
+	    -moz-box-shadow:0 0 10px #777;
+	    -webkit-box-shadow:0 0 10px #777;
+	    box-shadow:0 0 10px #777;
+	    line-height:400px;
+	    text-align:center;
+	}
+</style>
+
+<script language="javascript" type="text/javascript">
+    $('#hero').hide();
+    $(document).ready(function () {
+        $(document).on("click", "#nav a[href]", function () {
+            $.ajax({
+                url: $(this).attr("href"),
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#Comments').html(result);
+                    $('html, body').animate({
+                        scrollTop: $("#reviews").offset().top
+                    }, 500);
+                }
+            });
+            return false;
+        });
+
+        //$('#single-product .single-product-gallery-item img').hover(function () {
+        //    $("#single-product .single-product-gallery-item img").addClass('transition');
+
+        //}, function () {
+        //    $("#single-product .single-product-gallery-item img").removeClass('transition');
+        //});
+    });
+  
+
+    (function ($) {
+
+        $.fn.easyZoom = function (options) {
+
+            var defaults = {
+                id: 'easy_zoom',
+                parent: 'body',
+                append: true,
+                preload: 'Loading...',
+                error: 'There has been a problem with loading the image.'
+            };
+
+            var obj;
+            var img = new Image();
+            var loaded = false;
+            var found = true;
+            var timeout;
+            var w1, w2, h1, h2, rw, rh;
+            var over = false;
+
+            var options = $.extend(defaults, options);
+
+            this.each(function () {
+
+                obj = this;
+                // works only for anchors
+                var tagName = this.tagName.toLowerCase();
+                if (tagName == 'a') {
+
+                    var href = $(this).attr('href');
+                    img.src = href + '?' + (new Date()).getTime() + ' =' + (new Date()).getTime();
+                    $(img).error(function () { found = false; })
+                    img.onload = function () {
+                        loaded = true;
+                        img.onload = function () { };
+                    };
+
+                    $(this)
+                        .css('cursor', 'crosshair')
+                        .click(function (e) { e.preventDefault(); })
+                        .mouseover(function (e) { start(e); })
+                        .mouseout(function () { hide(); })
+                        .mousemove(function (e) { move(e); })
+                };
+
+            });
+
+            function start(e) {
+                hide();
+                var zoom = $('<div id="' + options.id + '">' + options.preload + '</div>');
+                if (options.append) { zoom.appendTo(options.parent) } else { zoom.prependTo(options.parent) };
+                if (!found) {
+                    error();
+                } else {
+                    if (loaded) {
+                        show(e);
+                    } else {
+                        loop(e);
+                    };
+                };
+            };
+
+            function loop(e) {
+                if (loaded) {
+                    show(e);
+                    clearTimeout(timeout);
+                } else {
+                    timeout = setTimeout(function () { loop(e) }, 200);
+                };
+            };
+
+            function show(e) {
+                over = true;
+                $(img).css({ 'position': 'absolute', 'top': '0', 'left': '0' });
+                $('#' + options.id).html('').append(img);
+                w1 = $('img', obj).width();
+                h1 = $('img', obj).height();
+                w2 = $('#' + options.id).width();
+                h2 = $('#' + options.id).height();
+                w3 = $(img).width();
+                h3 = $(img).height();
+                w4 = $(img).width() - w2;
+                h4 = $(img).height() - h2;
+                rw = w4 / w1;
+                rh = h4 / h1;
+                move(e);
+            };
+
+            function hide() {
+                over = false;
+                $('#' + options.id).remove();
+            };
+
+            function error() {
+                $('#' + options.id).html(options.error);
+            };
+
+            function move(e) {
+                if (over) {
+                    // target image movement
+                    var p = $('img', obj).offset();
+                    var pl = e.pageX - p.left;
+                    var pt = e.pageY - p.top;
+                    var xl = pl * rw;
+                    var xt = pt * rh;
+                    xl = (xl > w4) ? w4 : xl;
+                    xt = (xt > h4) ? h4 : xt;
+                    $('#' + options.id + ' img').css({ 'left': xl * (-1), 'top': xt * (-1) });
+                };
+            };
+
+        };
+
+    })(jQuery);
+
+    jQuery(function ($) {
+
+        $('a.test1').easyZoom();
+        $('a.test2').easyZoom();
+        $('a.test3').easyZoom();
+    });
+
+</script>
+
+<div id="single-product">
+    <div class="container">
+        <div class="no-margin col-xs-12 col-sm-6 col-md-5 gallery-holder">
+            <div class="product-item-holder size-big single-product-gallery small-gallery">
+                <div id="owl-single-product">
+                    <div class="single-product-gallery-item" id="slide1">
+                        <a data-rel="prettyphoto" class="test1" href="@Url.Content("~/images/products/")@Model.AnhDaiDien">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" width="353" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                    <div class="single-product-gallery-item" id="slide2">
+                        <a data-rel="prettyphoto" class="test2" href="@Url.Content("~/images/products/")@Model.AnhNen">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                    <div class="single-product-gallery-item" id="slide3">
+                        <a data-rel="prettyphoto"  class="test3" href="@Url.Content("~/images/products/")@Model.AnhKhac">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                </div><!-- /.single-product-slider -->
+
+                <div class="single-product-gallery-thumbs gallery-thumbs">
+                    <div id="owl-single-product-thumbnails">
+                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
+                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" />
+                        </a>
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
+                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
+                        </a>
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
+                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
+                        </a>
+                    </div><!-- /#owl-single-product-thumbnails -->
+                </div><!-- /.gallery-thumbs -->
+            </div><!-- /.single-product-gallery -->
+        </div><!-- /.gallery-holder -->
+        <div class="no-margin col-xs-12 col-sm-7 body-holder">
+            <div class="body">
+                @*<div class="star-holder inline"><div class="star" data-score="4"></div></div>*@
+                <div class="availability">
+                    <label>Số lượng:</label>@Model.SoLuong
+                </div>
+                <div class="availability">
+                    <label>Tình trạng:</label> @if (@Model.SoLuong > 0)
+                    {<span class="available"> Còn hàng </span> }
+                    else
+                    {<span class="not-available">Hết hàng</span> }
+                </div>
+                <div class="title"><a href="#">@Model.TenSP</a></div>
+                <div class="brand"></div>
+                <div class="social-row">
+                    <span class="st_facebook_hcount"></span>
+                    <span class="st_twitter_hcount"></span>
+                    <span class="st_pinterest_hcount"></span>
+                </div>
+                <div class="buttons-holder">
+                    <label>Chia sẻ với bạn bè</label>
+                </div>
+                <div class="brand"></div>
+                <div class="excerpt">
+                    <label>Khuyến mãi:</label>
+                    @if (Model.SanPhamKhuyenMais.Any())
+                    {
+                        <div class="text-capitalize" style="background-color: #efefef">@Html.Raw(Model.SanPhamKhuyenMais.FirstOrDefault().MoTa)</div>
+                    }
+                </div>
+                <div class="brand"></div>
+                <div class="prices">
+                    <div class="price-current">@string.Format("{0:0,0}", Model.GiaTien) VNĐ</div>
+                    @if (Model.GiaGoc != Model.GiaTien)
+                    {<div class="price-prev">@string.Format("{0:0,0}", Model.GiaGoc) VNĐ</div>}
+                </div>
+                <div class="qnt-holder">
+                    <div class="le-quantity">
+                        <form>
+                            <a class="minus" href="javascript:;"></a>
+                            <input name="quantity" class="sl" readonly="readonly" type="text" value="1" />
+                            <a class="plus" href="javascript:;"></a>
+                        </form>
+                    </div>
+                    <a id="addto-cart" href="javascript:;" onclick="Addcart('@Model.MaSP',0)" class="le-button huge">Cho vào giỏ</a>
+                </div><!-- /.qnt-holder -->
+            </div><!-- /.body -->
+        </div><!-- /.body-holder -->
+    </div><!-- /.container -->
+</div><!-- /.single-product -->
+<!-- ========================================= SINGLE PRODUCT TAB ========================================= -->
+<section id="single-product-tab">
+    <div class="container">
+        <div class="tab-holder">
+
+            <ul class="nav nav-tabs simple">
+                <li class="active"><a href="#description" data-toggle="tab">Mô tả</a></li>
+                <li><a href="#additional-info" data-toggle="tab">Thông sô kỹ thuật</a></li>
+                <li><a href="#reviews" data-toggle="tab">Bình luận</a></li>
+            </ul><!-- /.nav-tabs -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    @Html.Raw(@Model.MoTa)
+                    <div class="meta-row">
+                        <div class="inline">
+                            <label>Loại:</label>
+                            <span><a href="@Url.Action("AdvancedSearchView", "Search", new { loai = Model.LoaiSP })">@Model.LoaiSP1.TenLoai</a></span>
+                        </div><!-- /.inline -->
+                        <span class="seperator">/</span>
+                        <div class="inline">
+                            <label>Hãng sản xuất:</label>
+                            <span><a href="@Url.Action("AdvancedSearchView", "Search", new { loai = Model.HangSX })">@Model.HangSanXuat.TenHang</a></span>
+                        </div><!-- /.inline -->
+                    </div><!-- /.meta-row -->
+                </div><!-- /.tab-pane #description -->
+                <div class="tab-pane" id="additional-info">
+                    <h2>Thông số kỹ thuật của @Model.TenSP</h2>
+                    @Html.Action("ThongSoKyThuat", "SanPham", new { MaSP = Model.MaSP })
+                </div><!-- /.tab-pane #additional-info -->
+
+                <div class="tab-pane" id="reviews">
+                    <div class="comments" id="Comments">
+                        @Html.Action("LoadComment", "Comment", new RouteValueDictionary { { "masp", @Model.MaSP } })
+                    </div><!-- /.comments -->
+                    <div class="add-review row">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="new-review-form">
+                                @Html.Action("AddComment", "Comment", new RouteValueDictionary { { "masp", @Model.MaSP } })
+                            </div><!-- /.new-review-form -->
+                        </div><!-- /.col -->
+                    </div><!-- /.add-review -->
+                </div><!-- /.tab-pane #reviews -->
+            </div><!-- /.tab-content -->
+        </div><!-- /.tab-holder -->
+    </div><!-- /.container -->
+</section><!-- /#single-product-tab -->
+<!-- ========================================= SINGLE PRODUCT TAB : END ========================================= -->
+<!-- ========================================= SAN PHAM LIEN QUAN ========================================= -->
+@*<section id="recently-reviewd" class="wow fadeInUp">
+        <div class="container">
+            <div class="carousel-holder hover">
+
+                <div class="title-nav">
+                    <h2 class="h1">Recently Viewed</h2>
+                    <div class="nav-holder">
+                        <a href="#prev" data-target="#owl-recently-viewed" class="slider-prev btn-prev fa fa-angle-left"></a>
+                        <a href="#next" data-target="#owl-recently-viewed" class="slider-next btn-next fa fa-angle-right"></a>
+                    </div>
+                </div><!-- /.title-nav -->
+                <div id="owl-recently-viewed" class="owl-carousel product-grid-holder">
+                    <div class="no-margin carousel-item product-item-holder size-small hover">
+                        <div class="product-item">
+                            <div class="ribbon red"><span>sale</span></div>
+                            <div class="image">
+                                <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-11.jpg" />
+                            </div>
+                            <div class="body">
+                                <div class="title">
+                                    <a href="single-product.html">LC-70UD1U 70" class aquos 4K ultra HD</a>
+                                </div>
+                                <div class="brand">Sharp</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">$1199.00</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="single-product.html" class="le-button">Add to Cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                    <a class="btn-add-to-compare" href="#">Compare</a>
+                                </div>
+                            </div>
+                        </div><!-- /.product-item -->
+                    </div><!-- /.product-item-holder -->
+                    <div class="no-margin carousel-item product-item-holder size-small hover">
+                        <div class="product-item">
+                            <div class="ribbon blue"><span>new!</span></div>
+                            <div class="image">
+                                <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-12.jpg" />
+                            </div>
+                            <div class="body">
+                                <div class="title">
+                                    <a href="single-product.html">cinemizer OLED 3D virtual reality TV Video</a>
+                                </div>
+                                <div class="brand">zeiss</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">$1199.00</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="single-product.html" class="le-button">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                    <a class="btn-add-to-compare" href="#">Compare</a>
+                                </div>
+                            </div>
+                        </div><!-- /.product-item -->
+                    </div><!-- /.product-item-holder -->
+                    <div class=" no-margin carousel-item product-item-holder size-small hover">
+                        <div class="product-item">
+                            <div class="image">
+                                <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-13.jpg" />
+                            </div>
+                            <div class="body">
+                                <div class="title">
+                                    <a href="single-product.html">s2340T23" full HD multi-Touch Monitor</a>
+                                </div>
+                                <div class="brand">dell</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">$1199.00</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="single-product.html" class="le-button">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                    <a class="btn-add-to-compare" href="#">Compare</a>
+                                </div>
+                            </div>
+                        </div><!-- /.product-item -->
+                    </div><!-- /.product-item-holder -->
+                    <div class=" no-margin carousel-item product-item-holder size-small hover">
+                        <div class="product-item">
+                            <div class="ribbon blue"><span>new!</span></div>
+                            <div class="image">
+                                <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-14.jpg" />
+                            </div>
+                            <div class="body">
+                                <div class="title">
+                                    <a href="single-product.html">kardon BDS 7772/120 integrated 3D</a>
+                                </div>
+                                <div class="brand">harman</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">$1199.00</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="single-product.html" class="le-button">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                    <a class="btn-add-to-compare" href="#">Compare</a>
+                                </div>
+                            </div>
+                        </div><!-- /.product-item -->
+                    </div><!-- /.product-item-holder -->
+                    <div class=" no-margin carousel-item product-item-holder size-small hover">
+                        <div class="product-item">
+                            <div class="ribbon green"><span>bestseller</span></div>
+                            <div class="image">
+                                <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-15.jpg" />
+                            </div>
+                            <div class="body">
+                                <div class="title">
+                                    <a href="single-product.html">netbook acer travel B113-E-10072</a>
+                                </div>
+                                <div class="brand">acer</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">$1199.00</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="single-product.html" class="le-button">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                    <a class="btn-add-to-compare" href="#">Compare</a>
+                                </div>
+                            </div>
+                        </div><!-- /.product-item -->
+                    </div><!-- /.product-item-holder -->
+                    <div class=" no-margin carousel-item product-item-holder size-small hover">
+                        <div class="product-item">
+                            <div class="image">
+                                <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-16.jpg" />
+                            </div>
+                            <div class="body">
+                                <div class="title">
+                                    <a href="single-product.html">iPod touch 5th generation,64GB, blue</a>
+                                </div>
+                                <div class="brand">apple</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">$1199.00</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="single-product.html" class="le-button">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                    <a class="btn-add-to-compare" href="#">Compare</a>
+                                </div>
+                            </div>
+                        </div><!-- /.product-item -->
+                    </div><!-- /.product-item-holder -->
+                    <div class=" no-margin carousel-item product-item-holder size-small hover">
+                        <div class="product-item">
+                            <div class="image">
+                                <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-13.jpg" />
+                            </div>
+                            <div class="body">
+                                <div class="title">
+                                    <a href="single-product.html">s2340T23" full HD multi-Touch Monitor</a>
+                                </div>
+                                <div class="brand">dell</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">$1199.00</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="single-product.html" class="le-button">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                    <a class="btn-add-to-compare" href="#">Compare</a>
+                                </div>
+                            </div>
+                        </div><!-- /.product-item -->
+                    </div><!-- /.product-item-holder -->
+                    <div class=" no-margin carousel-item product-item-holder size-small hover">
+                        <div class="product-item">
+                            <div class="ribbon blue"><span>new!</span></div>
+                            <div class="image">
+                                <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-14.jpg" />
+                            </div>
+                            <div class="body">
+                                <div class="title">
+                                    <a href="single-product.html">kardon BDS 7772/120 integrated 3D</a>
+                                </div>
+                                <div class="brand">harman</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">$1199.00</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="single-product.html" class="le-button">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                    <a class="btn-add-to-compare" href="#">Compare</a>
+                                </div>
+                            </div>
+                        </div><!-- /.product-item -->
+                    </div><!-- /.product-item-holder -->
+                </div><!-- /#recently-carousel -->
+            </div><!-- /.carousel-holder -->
+        </div><!-- /.container -->
+    </section>*@<!-- /#recently-reviewd -->
+@Html.Action("Loadsplienquan", "SanPham", new { maloai = @Model.LoaiSP, sl = 6 });
+<!-- ========================================= RECENTLY VIEWED : END ========================================= -->
+<script type="text/javascript">
+    $('.le-quantity a').click(function (e) {
+        e.preventDefault();
+        var currentQty = $(this).parent().parent().find('input').val();
+        if ($(this).hasClass('minus') && currentQty > 0) {
+            $(this).parent().parent().find('input').val(parseInt(currentQty, 10) - 1);
+        } else {
+            if ($(this).hasClass('plus')) {
+                $(this).parent().parent().find('input').val(parseInt(currentQty, 10) + 1);
+            }
+        }
+    });
+</script>

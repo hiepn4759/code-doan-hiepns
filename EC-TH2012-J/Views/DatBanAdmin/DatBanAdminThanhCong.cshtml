@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Đặt Bàn Thành Công";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using WebNhaHangOnline.Models;
+
+<br />
+<br />
+<h3 style="color: white">Bạn Đã Đặt Bàn Cho Khách Hàng Thành Công!</h3>
+<div class="container dat-phong-thanh-cong panel panel-primary">
+    @*<p>Tài Khoản <span style="color: blue;">@(((TaiKhoan)Session["TaiKhoan"]).TenTaiKhoan)</span> đã đặt thành công!</p>*@
+    <table class="table bang-dang-ky-thanh-cong bang-dat-phong-thanh-cong">
+        <colgroup>
+            <col style="width: 40%" />
+            <col style="width: 60%" />
+        </colgroup>
+        <tbody>
+            <tr><th>UserName:</th><th><span style="color: #8A2BE2">@ViewBag.UserName</span></th></tr>
+            <tr><th>Bàn:</th><th><span style="color: #8A2BE2">@ViewBag.TenPhong</span></th></tr>
+            <tr><th>Số lượng người:</th><th><span style="color: #4682B4">@ViewBag.DienTich</span></th></tr>
+            <tr><th>Ngày Đặt:</th><th><span style="color: #008000">@ViewBag.NgayDat</span></th></tr>
+            <tr><th>Ngày đến:</th><th><span style="color: #FF4500">@ViewBag.NgayDen</span></th></tr>
+            <tr><th>Thành Tiền:</th><th><span style="color: #e6004c">@ViewBag.ThanhTien đ</span></th></tr>
+        </tbody>
+    </table>
+    <p><a href="/"><span style="color: #0000CC;" class="btn btn-danger">Quay Về Trang Chủ</span></a></p>
+</div>

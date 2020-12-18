@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Đặt Bàn Lỗi";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using WebNhaHangOnline.Models;
+
+<div class="container">
+    @if (ViewBag.Success == -1)
+    {
+        <p class="canh-bao">Nhập sai thông tin! Số ngày phải >= 1!</p>
+
+    }
+    else if (ViewBag.Success == 1)
+    {
+        <h2 class="canh-bao" style="color: red">Bàn đã có người đặt trong khoảng thời gian đó!. Vui lòng chọn thời gian khác</h2>
+        <p><a href="@Url.Action("", "DatBanAdmin")"><span style="color: #0000CC;" class="btn btn-danger">Quay Về Trang Chủ</span></a></p>
+    }
+</div>

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Trang chu";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+@using WebNhaHangOnline.Models;
+@model List<LoaiBan>
+
+<div class="container">
+    <br />
+    <h3 style="color: white">Đặt Bàn Nhà Hàng</h3>
+    <div class="" style="display: flex; flex-wrap: wrap">
+        @foreach (LoaiBan lp in @Model)
+        {
+            <div class="loai-phong" style="margin: 20px;">
+                <div class="div-zoom">
+                    <a href="/DatBan/LoaiBan/@lp.MaLoai"><img class="img-zoom" width="250" height="149" src="~/images/headers/banlaui.jpg" alt="@lp.TenLoai" /></a>
+                </div>
+                <div style="color: black; border-radius: 10px;" class="ten-loai">@lp.TenLoai</div>
+            </div>
+        }
+    </div>
+</div>
+<div class="container">
+    <h3>Tìm Kiếm Theo Số Lượng Người:</h3>
+    <div class="container" style="width:100%">
+        <form action="/DatBan/TimKiem" method="get">
+            @*<label>Tìm Kiếm Theo:</label>*@
+            <select class="form-control loai-tim-kiem" id="LoaiTimKiem" name="LoaiTimKiem" onchange="changeLabel()">
+                @*<option>Giá Phòng</option>*@
+                <option>Số lượng người</option>
+            </select>
+            <select class="form-control muc-tim-kiem" name="MucTimKiem">
+                <option><=</option>
+                <option>>=</option>
+            </select>
+            <label>Số người:</label>
+            <input class="form-control gia-tri-tim-kiem" type="number" name="GiaTri" min="0" placeholder="Nhập số lượng người: " />
+            <label id="don-vi"></label>
+            <script>
+            function changeLabel() {
+                var loaitk = document.getElementById('LoaiTimKiem');
+                if (loaitk.value == 'Giá Phòng') {
+                    document.getElementById('don-vi').innerText = 'nghìn đồng';
+                } else {
+                    document.getElementById('don-vi').innerText = 'Người';
+                }
+            }
+            changeLabel();
+            </script>
+            <span>&nbsp;</span>
+            <input class="btn btn-success" type="submit" value="Tìm Kiếm" />
+        </form>
+    </div>
+    <br />
+</div>
+

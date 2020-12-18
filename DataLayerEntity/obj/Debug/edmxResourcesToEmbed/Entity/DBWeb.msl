@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebGiayHangHieuModelStoreContainer" CdmEntityContainer="WebGiayHangHieuEntities1">
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BinhLuans">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.BinhLuan">
+        <MappingFragment StoreEntitySet="BinhLuan">
+          <ScalarProperty Name="MaBL" ColumnName="MaBL" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DaTraLoi" ColumnName="DaTraLoi" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiTietDonHangs">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.ChiTietDonHang">
+        <MappingFragment StoreEntitySet="ChiTietDonHang">
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonHangKHs">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.DonHangKH">
+        <MappingFragment StoreEntitySet="DonHangKH">
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="PhiVanChuyen" ColumnName="PhiVanChuyen" />
+          <ScalarProperty Name="PTGiaoDich" ColumnName="PTGiaoDich" />
+          <ScalarProperty Name="NgayDatMua" ColumnName="NgayDatMua" />
+          <ScalarProperty Name="TinhTrangDH" ColumnName="TinhTrangDH" />
+          <ScalarProperty Name="Tongtien" ColumnName="Tongtien" />
+          <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+          <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+          <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai" />
+          <ScalarProperty Name="MaAdmin" ColumnName="MaAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GiaoDiens">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.GiaoDien">
+        <MappingFragment StoreEntitySet="GiaoDien">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ThuocTinh" ColumnName="ThuocTinh" />
+          <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HangSanXuats">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.HangSanXuat">
+        <MappingFragment StoreEntitySet="HangSanXuat">
+          <ScalarProperty Name="HangSX" ColumnName="HangSX" />
+          <ScalarProperty Name="TenHang" ColumnName="TenHang" />
+          <ScalarProperty Name="TruSoChinh" ColumnName="TruSoChinh" />
+          <ScalarProperty Name="QuocGia" ColumnName="QuocGia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhoSPs">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.KhoSP">
+        <MappingFragment StoreEntitySet="KhoSP">
+          <ScalarProperty Name="IDKho" ColumnName="IDKho" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="SL" ColumnName="SL" />
+          <ScalarProperty Name="DateImport" ColumnName="DateImport" />
+          <ScalarProperty Name="DateExport" ColumnName="DateExport" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhuyenMais">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.KhuyenMai">
+        <MappingFragment StoreEntitySet="KhuyenMai">
+          <ScalarProperty Name="MaKM" ColumnName="MaKM" />
+          <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+          <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="TenCT" ColumnName="TenCT" />
+          <ScalarProperty Name="AnhCT" ColumnName="AnhCT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Links">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.Link">
+        <MappingFragment StoreEntitySet="Link">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoaiSPs">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.LoaiSP">
+        <MappingFragment StoreEntitySet="LoaiSP">
+          <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+          <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhaCungCaps">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.NhaCungCap">
+        <MappingFragment StoreEntitySet="NhaCungCap">
+          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+          <ScalarProperty Name="TenNCC" ColumnName="TenNCC" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="SDT_NCC" ColumnName="SDT_NCC" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Net_user" ColumnName="Net_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPhams">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.SanPham">
+        <MappingFragment StoreEntitySet="SanPham">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="LoaiSP" ColumnName="LoaiSP" />
+          <ScalarProperty Name="SoLuotXemSP" ColumnName="SoLuotXemSP" />
+          <ScalarProperty Name="HangSX" ColumnName="HangSX" />
+          <ScalarProperty Name="XuatXu" ColumnName="XuatXu" />
+          <ScalarProperty Name="GiaGoc" ColumnName="GiaGoc" />
+          <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+          <ScalarProperty Name="AnhNen" ColumnName="AnhNen" />
+          <ScalarProperty Name="AnhKhac" ColumnName="AnhKhac" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="isnew" ColumnName="isnew" />
+          <ScalarProperty Name="ishot" ColumnName="ishot" />
+          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sanphamcanmuas">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.Sanphamcanmua">
+        <MappingFragment StoreEntitySet="Sanphamcanmua">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+          <ScalarProperty Name="Ngayketthuc" ColumnName="Ngayketthuc" />
+          <ScalarProperty Name="Ngaydang" ColumnName="Ngaydang" />
+          <ScalarProperty Name="Mota" ColumnName="Mota" />
+          <ScalarProperty Name="SanPham_Id" ColumnName="SanPham_Id" />
+          <ScalarProperty Name="NhaCungCap_Id" ColumnName="NhaCungCap_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPhamKhuyenMais">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.SanPhamKhuyenMai">
+        <MappingFragment StoreEntitySet="SanPhamKhuyenMai">
+          <ScalarProperty Name="MaKM" ColumnName="MaKM" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="GiamGia" ColumnName="GiamGia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThongSoKyThuats">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.ThongSoKyThuat">
+        <MappingFragment StoreEntitySet="ThongSoKyThuat">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="ThuocTinh" ColumnName="ThuocTinh" />
+          <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TongSPKhoes">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.TongSPKho">
+        <MappingFragment StoreEntitySet="TongSPKho">
+          <ScalarProperty Name="IDKho" ColumnName="IDKho" />
+          <ScalarProperty Name="IDSP" ColumnName="IDSP" />
+          <ScalarProperty Name="SL" ColumnName="SL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trackingactions">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.Trackingaction">
+        <MappingFragment StoreEntitySet="Trackingaction">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Ngaythuchien" ColumnName="Ngaythuchien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAdmins">
+      <EntityTypeMapping TypeName="WebGiayHangHieuModel.UserAdmin">
+        <MappingFragment StoreEntitySet="UserAdmin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="WebGiayHangHieuModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserAdminRoles" TypeName="WebGiayHangHieuModel.UserAdminRoles" StoreEntitySet="UserAdminRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="UserAdmin">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

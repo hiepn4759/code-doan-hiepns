@@ -1,0 +1,32 @@
+﻿@using WebNhaHangOnline.Models;
+@model List<MenuItem>
+<nav id="top-megamenu-nav" class="megamenu-vertical animate-dropdown">
+    <div class="container">
+        <div class="yamm navbar">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mc-horizontal-menu-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div><!-- /.navbar-header -->
+            <div class="collapse navbar-collapse" id="mc-horizontal-menu-collapse">
+                <ul class="nav navbar-nav">
+                    @foreach (var item in Model)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">@item.LoaiSP.TenLoai</a>
+                            <ul class="dropdown-menu">
+                                @foreach(var i in item.HangSX)
+                                {
+                                    <li><a href="@Url.Action("AdvancedSearchView", "Search", new { loai = item.LoaiSP.MaLoai, hangsx = i.HangSX })">@i.TenHang</a></li>
+                                }
+                            </ul>
+                        </li>
+                    } 
+                </ul><!-- /.navbar-nav -->
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.navbar -->
+    </div><!-- /.container -->
+</nav><!-- /.megamenu-vertical -->

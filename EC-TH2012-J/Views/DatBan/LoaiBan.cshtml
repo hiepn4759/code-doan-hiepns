@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Loại Bàn";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using WebNhaHangOnline.Models;
+@model List<Ban>
+
+<br />
+<br />
+<div class="container">
+    <h3 style="color: white">Danh Sách Bàn</h3>
+    <br />
+    <br />
+</div>
+
+@if (ViewBag.Success == 1)
+{
+    <h3>@ViewBag.TenLoai</h3>
+    <div class="container panel panel-primary" style="display: flex; flex-wrap: wrap">
+        @*<img style="padding-bottom: 16px" src="~/images/headers/banlaui.jpg" alt="Image" />*@
+        @*<label id="thong-tin">@ViewBag.GhiChu</label>*@
+        <br />
+        @foreach (Ban p in Model)
+        {
+            <div class="phong">
+                <img class="img-rounded img-phong" src="~/images/headers/banlaui.jpg" alt="Image" width="250" height="149" />
+                <label>Tên Bàn: @p.TenPhong</label><br />
+                <label>Diện Tích: @p.DienTich m</label><br />
+                <span class="gia-thue">@p.GiaThue.000 đ/bàn</span><br />
+                <input type="button" class="btn-dat-phong btn btn-dange" onclick="location.href = '/DatBan/DatBan/@p.MaBan'" value="Đặt Bàn" />
+                <br />
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h3>Loại Bàn Ko Tồn Tại!</h3>
+}

@@ -1,0 +1,4 @@
+D:\Code\DataLayerEntity\bin\Debug\DataLayerEntity.dll
+D:\Code\DataLayerEntity\bin\Debug\DataLayerEntity.pdb
+D:\Code\DataLayerEntity\obj\Debug\DataLayerEntity.dll
+D:\Code\DataLayerEntity\obj\Debug\DataLayerEntity.pdb

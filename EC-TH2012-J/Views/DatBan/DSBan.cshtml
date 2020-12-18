@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Danh Sách Bàn";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+    ViewBag.DiaChi = 1;
+}
+
+@using WebNhaHangOnline.Models;
+@model List<BanView>
+
+<div class="container row">
+    <br />
+    <h3 style="color: white">Danh Sách Bàn</h3>
+    <br />
+    <div class="container  panel panel-primary row" style="">
+        @foreach (BanView pv in @Model)
+        {
+        <div class="phong col-sm-6">
+            <img class="img-rounded img-phong" src="~/images/headers/banlaui.jpg" alt="Image" width="250" height="149" />
+            <label style="color:chartreuse">Loại Bàn: @pv.TenLoai</label><br />
+            <label>Tên Bàn: @pv.TenPhong</label><br />
+            <label>Số lượng người: @pv.DienTich</label><br />
+            @*<span class="gia-thue">@pv.GiaThue.000 đ/Bàn</span><br />*@
+            <input type="button" class="btn-dat-phong btn btn-danger" onclick="location.href = '/DatBan/DatBan/@pv.MaBan'" value="ĐẶT Bàn" />
+        </div>
+        }
+    </div>
+</div>
+

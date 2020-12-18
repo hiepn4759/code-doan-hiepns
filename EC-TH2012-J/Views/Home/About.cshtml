@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div id="alertHiepns" class="alert hidden">
+        @TempData["AlertMessage"]
+    </div>
+}
+
+<script type="text/javascript">
+    $('#alertHiepns').removeClass("hidden");
+    $('#alertHiepns').addClass("alert success");
+    debugger
+    $('#alertHiepns').delay(1000).slideUp(500);
+</script>
+<p>Use this area to provide additional information.</p>
