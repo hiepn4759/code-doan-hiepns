@@ -164,10 +164,10 @@ namespace WebNhaHangOnline.Models
             if(us != null)
             {
                 string mail = us.Email;
-                string sub = "[Xác nhận email] Xác nhận đăng ký tại TMDT_J shop";
+                string sub = "[Xác nhận email] Xác nhận đăng ký tại Shop_HiepNS";
                 string bo = "";
                 bo += "Xin chào " + us.HoTen + ",<br>";
-                bo += "Cảm ơn bạn đã đăng ký tịa TMDT_Shop, đây là link xác nhận email của bạn <br>";
+                bo += "Cảm ơn bạn đã đăng ký tịa Shop_HiepNS, đây là link xác nhận email của bạn <br>";
                 bo += "Click vào link bên dưới để xác nhận:<br>";
                 bo += "<a href=\""+ url +"\">" + url + "</a><br>";
                 bo += "Xin cảm ơn.";

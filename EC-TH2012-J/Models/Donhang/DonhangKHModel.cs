@@ -219,7 +219,7 @@ namespace WebNhaHangOnline.Models
 
         }
 
-        internal bool UpdateTinhTrang(string madh, int? tt)
+        internal bool UpdateTinhTrang(string madh, int? tt, string email, string hoten)
         {
             if (tt == null) return false;
             try
@@ -242,6 +242,17 @@ namespace WebNhaHangOnline.Models
                             }else
                             {
                                 spm.UpdateSLKho(item.MaSP, item.SoLuong, false);
+                                EmailTool sendmail = new EmailTool();
+                                if (email != null)
+                                {
+                                    string mail = email;
+                                    string sub = "[Xác nhận email] Xác nhận đăng ký tại Shop_HiepNS";
+                                    string bo = "";
+                                    bo += "Xin chào " + hoten + ",<br>";
+                                    bo += "Cảm ơn bạn đã đăng ký tịa Shop_HiepNS, Bạn sẽ được nhận những khuyến mãi của cửa hàng <br>";
+                                    bo += "Xin cảm ơn.";
+                                    sendmail.SendMail(new EmailModel(mail, sub, bo));
+                                }
                             }
                             
                         }
@@ -262,6 +273,17 @@ namespace WebNhaHangOnline.Models
                             else
                             {
                                 spm.UpdateSLKho(item.MaSP, item.SoLuong, true);
+                                EmailTool sendmail = new EmailTool();
+                                if (email != null)
+                                {
+                                    string mail = email;
+                                    string sub = "[Xác nhận email] Xác nhận đăng ký tại Shop_HiepNS";
+                                    string bo = "";
+                                    bo += "Xin chào " + hoten + ",<br>";
+                                    bo += "Cảm ơn bạn đã đăng ký tịa Shop_HiepNS, Bạn sẽ được nhận những khuyến mãi của cửa hàng <br>";
+                                    bo += "Xin cảm ơn.";
+                                    sendmail.SendMail(new EmailModel(mail, sub, bo));
+                                }
                             }
                             
                         }

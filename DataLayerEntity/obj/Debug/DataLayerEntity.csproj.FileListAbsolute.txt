@@ -2,3 +2,8 @@ D:\Code\DataLayerEntity\bin\Debug\DataLayerEntity.dll
 D:\Code\DataLayerEntity\bin\Debug\DataLayerEntity.pdb
 D:\Code\DataLayerEntity\obj\Debug\DataLayerEntity.dll
 D:\Code\DataLayerEntity\obj\Debug\DataLayerEntity.pdb
+F:\DOAN\code-doan-hiepns\DataLayerEntity\bin\Debug\DataLayerEntity.dll
+F:\DOAN\code-doan-hiepns\DataLayerEntity\bin\Debug\DataLayerEntity.pdb
+F:\DOAN\code-doan-hiepns\DataLayerEntity\obj\Debug\DataLayerEntity.dll
+F:\DOAN\code-doan-hiepns\DataLayerEntity\obj\Debug\DataLayerEntity.pdb
+F:\DOAN\code-doan-hiepns\DataLayerEntity\obj\Debug\DataLayerEntity.csprojResolveAssemblyReference.cache

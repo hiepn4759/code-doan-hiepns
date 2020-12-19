@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace WebNhaHangOnline.Controllers
 {
@@ -31,7 +32,12 @@ namespace WebNhaHangOnline.Controllers
         public ActionResult UpdateTinhTrangDH(string madh, int? tt)
         {
             DonhangKHModel dh = new DonhangKHModel();
-            dh.UpdateTinhTrang(madh, tt);
+            var idUser = User.Identity.GetUserId();
+            UserModel user = new UserModel();
+
+            var getUser = user.FindById(idUser);
+
+            dh.UpdateTinhTrang(madh, tt, getUser.Email, getUser.HoTen);
             return RedirectToAction("TimDonHang");
         }
 

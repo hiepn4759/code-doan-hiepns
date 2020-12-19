@@ -12,7 +12,6 @@ using System.IO;
 using PagedList;
 using PagedList.Mvc;
 using WebNhaHangOnline.Models;
-using WebNhaHangOnline.Models;
 
 namespace WebNhaHangOnline.Controllers
 {
@@ -47,6 +46,8 @@ namespace WebNhaHangOnline.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return PartialView("Login");
         }
+
+        //send email
 
         //
         // POST: /Account/Login
